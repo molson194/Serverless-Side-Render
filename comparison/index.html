@@ -1,0 +1,29 @@
+<html>
+
+<head>
+    <link rel='stylesheet' href='home/styles.css'>
+</head>
+
+<body>
+    <h1>Client Side Render</h1>
+    <p id='time'>Time rendered on client: In Progress</p>
+    <p id='data'>Data rendered on client: In Progress</p>
+    <form action='http://localhost:7071/api/data' method='post'>
+        <input type='text' id='name' name='name' placeholder='data'>
+        <button id='submit'>Submit</button>
+    </form>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const time = document.getElementById("time");
+            time.innerHTML = `Time rendered on client: ${(new Date()).toISOString()}`;
+            
+            const data = document.getElementById("data");
+            fetch('http://localhost:7071/api/data')
+                .then(response => response.json())
+                .then(responseData => data.innerHTML = `Data rendered on client: [${responseData}]`);
+        });
+    </script>
+</body>
+
+</html>

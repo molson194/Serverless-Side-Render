@@ -21,23 +21,24 @@ namespace ServerlessSideRender
 
             var currentData = Data.GetData();
 
-            // TODO: return css
-            // TODO: form redirect
-            // TODO: embed jsx/svelte for realtime frontend updates
-            // TODO: create static html
-            // TODO: upload functions and static site to azure
+            // TODO: upload functions and static site to azure (change localhost)
             // TODO: run speed test
+            // TODO: embed jsx/svelte/csml for realtime frontend updates
+            //       routes folder with .csml files, components folder with components
+            //       before build target, get all files routes folder
+            //       generate cs and html needed for prerender (and good updating)
+            //       use reflection to code-gen and include in the csproj dll
             // TODO: share, patent, powerpoint
             return new ContentResult 
             { 
                 Content = $@"<html>
 <head>
-<link rel='stylesheet' href='styles.css'>
+<link rel='stylesheet' href='home/styles.css'>
 </head>
 <body>
     <h1>Serverless Side Render</h1>
-    <p>Time rendered on server: {DateTime.Now.ToString("dddd, dd MMMM yyyy HH:mm")}</p>
-    <p>Data: [{string.Join(',', currentData)}]</p>
+    <p>Time rendered on server: {DateTime.Now.ToString("dddd, yyyy-MM-ddTHH:mm:ss")}</p>
+    <p>Data rendered on server: [{string.Join(',', currentData)}]</p>
     <form action='/api/data' method='post'>
         <input type='text' id='name' name='name' placeholder='data'>
         <button id='submit'>Submit</button>
@@ -45,6 +46,30 @@ namespace ServerlessSideRender
 </body>
 </html>", 
                 ContentType = "text/html", 
+                StatusCode = 200 
+            };
+        }
+    }
+
+    // Maybe everything should be compiled into javascript or html instead?
+    public static class HomeCss
+    {
+        [FunctionName("HomeCss")]
+        public static IActionResult Run(
+            [HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = "Home/styles.css")] HttpRequest req,
+            ILogger log)
+        {
+            return new ContentResult 
+            { 
+                Content = $@"body {{
+  background-color: lightblue;
+}}
+
+h1 {{
+  color: navy;
+  margin-left: 20px;
+}}", 
+                ContentType = "text/css", 
                 StatusCode = 200 
             };
         }

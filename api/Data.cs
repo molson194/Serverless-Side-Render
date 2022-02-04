@@ -32,7 +32,7 @@ namespace ServerlessSideRender
             log.LogInformation("Post data.");
             string name = req.Form["name"];
             Data.AppendData(name);
-            return new AcceptedResult();
+            return new AcceptedResult("http://localhost:7071/Home", "Data accepted. Note to self: prevent default submit action to change form href location.");
         }
     }
 
