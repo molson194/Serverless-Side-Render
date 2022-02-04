@@ -21,8 +21,6 @@ namespace ServerlessSideRender
 
             var currentData = Data.GetData();
 
-            // TODO: upload functions and static site to azure (change localhost)
-            // TODO: run speed test
             // TODO: embed jsx/svelte/csml for realtime frontend updates
             //       routes folder with .csml files, components folder with components
             //       before build target, get all files routes folder
