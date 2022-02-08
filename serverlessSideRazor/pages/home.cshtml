@@ -1,0 +1,12 @@
+@page
+@namespace serverlessSideRazor.Pages
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model HomeModel
+
+<h1>Serverless Side Render</h1>
+<p>Time rendered on server: @time</p>
+<p>Data rendered on server: [@dataString]</p>
+<form action='{function_uri}/api/data' method='post'>
+    <input type='text' id='name' name='name' placeholder='data'>
+    <button id='submit'>Submit</button>
+</form>

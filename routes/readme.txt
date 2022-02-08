@@ -1,1 +1,0 @@
-Eventually, put csml/svelte files in here and auto generate view routes.

@@ -1,0 +1,19 @@
+﻿@page
+@namespace serverSide.Pages
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model HomeModel
+
+<html>
+<head>
+    <link rel='stylesheet' href='~/css/Home.css'>
+</head>
+<body>
+    <h1>Server Side Render</h1>
+    <p>Time rendered on server: @Model.Time</p>
+    <p>Data rendered on server: [@Model.DataString]</p>
+    <form action='/api/data' method='post'>
+        <input type='text' id='name' name='name' placeholder='data'>
+        <button id='submit'>Submit</button>
+    </form>
+</body>
+</html>
